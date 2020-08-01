@@ -23,6 +23,9 @@ export default {
       types: {
         flat: 'Квартира',
       },
+      cities: {
+        Tyumen: 'Тюмень',
+      },
     };
   },
   props: {
@@ -30,22 +33,32 @@ export default {
   },
   computed: {
     attributes() {
-      return this.flat.attributes;
+      return this.flat.attributes || {};
     },
     type() {
       return this.types[this.flat.type] || 'Помещение';
     },
     address() {
-      const { city, street, house, room } = this.attributes.address;
-      return `${city}, ${street}, д. ${house}, кв. ${room}`;
+      const { city, street, house, room } = this.attributes.address || {};
+      const addressParts = [
+        city && `${this.cities[city]}`,
+        street && `${street}`,
+        house && `д. ${house}`,
+        room && `кв. ${room}`,
+      ].filter(Boolean);
+      return addressParts.join(', ');
     },
     area() {
-      const { area, unit } = this.attributes;
-      return `${area} ${unit}`;
+      const { area, unit = '' } = this.attributes;
+      return area ? `${area} ${unit}` : '';
     },
 
     agent() {
-      const { first_name, last_name, middle_name } = this.flat.relationships.attributes;
+      const {
+        first_name = '',
+        last_name = '',
+        middle_name = '',
+      } = this.flat.relationships?.attributes || {};
       return `${last_name} ${first_name} ${middle_name}`;
     },
   },
