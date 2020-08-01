@@ -8,7 +8,10 @@
             :key="flat.id"
             class="column is-4"
           >
-            <flat-item :flat="flat" />
+            <flat-item
+              :flat="flat"
+              @like="likeFlat(flat.id)"
+            />
           </div>
         </div>
       </div>
@@ -18,7 +21,7 @@
 
 <script>
 import FlatItem from './components/FlatItem';
-import { getFlats } from './api';
+import { getFlats, likeFlat } from './api';
 
 export default {
   name: 'App',
@@ -32,12 +35,26 @@ export default {
 
   async created() {
     try {
-      this.flats = await getFlats();
+      this.flats = (await getFlats()).map(flat => ({ liked: false, ...flat }));
     } catch (e) {
       console.log(e);
     }
-  }
-}
+  },
+
+  methods: {
+    async likeFlat(flatId) {
+      try {
+        const result = await likeFlat(flatId);
+        if (result) {
+          const likedFlat = this.flats.find(flat => flat.id === flatId);
+          likedFlat.liked = !likedFlat.liked;
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
+};
 </script>
 
 <style lang="scss">
