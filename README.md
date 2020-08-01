@@ -1,4 +1,13 @@
-# crtweb
+# flats test task
+
+This project doesn't have linting, i18n or any tests.
+
+Project created with vue-cli.
+
+Used:
+* VueJs
+* CSS framework [bulma](https://bulma.io/)
+* [Like button](https://materialdesignicons.com/icon/thumb-up)
 
 ## Project setup
 ```
@@ -13,11 +22,6 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 ### Customize configuration
