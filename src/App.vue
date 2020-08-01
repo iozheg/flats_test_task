@@ -3,10 +3,13 @@
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
-          <div class="column is-4"><flat-item /></div>
-          <div class="column is-4"><flat-item /></div>
-          <div class="column is-4"><flat-item /></div>
-          <div class="column is-4"><flat-item /></div>
+          <div
+            v-for="flat in flats"
+            :key="flat.id"
+            class="column is-4"
+          >
+            <flat-item :flat="flat" />
+          </div>
         </div>
       </div>
     </section>
@@ -15,10 +18,25 @@
 
 <script>
 import FlatItem from './components/FlatItem';
+import { getFlats } from './api';
 
 export default {
   name: 'App',
   components: { FlatItem },
+
+  data() {
+    return {
+      flats: [],
+    };
+  },
+
+  async created() {
+    try {
+      this.flats = await getFlats();
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 </script>
 
