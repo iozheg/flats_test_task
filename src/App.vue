@@ -1,22 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-multiline">
+          <div class="column is-4"><flat-item /></div>
+          <div class="column is-4"><flat-item /></div>
+          <div class="column is-4"><flat-item /></div>
+          <div class="column is-4"><flat-item /></div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FlatItem from './components/FlatItem';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { FlatItem },
 }
 </script>
 
-<style>
+<style lang="scss">
+@charset "utf-8";
+@import "~bulma/bulma";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
