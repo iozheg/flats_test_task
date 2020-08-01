@@ -1,18 +1,18 @@
 <template>
-  <!-- <div class="tile is-4 is-parent"> -->
-    <div class="box notification is-primary is-light">
-      <article class=" has-text-left">
-        <p class="title is-5">{{ attributes.title }}</p>
-        <p class="subtitle is-6">{{ type }}</p>
-        <div class="content">
-          <p><b>Комнат:</b> {{ attributes.rooms }}</p>
-          <p><b>Адрес:</b> {{ address }}</p>
-          <p><b>Площадь:</b> {{ area }}</p>
-          <p><b>Агент:</b> {{ agent }}</p>
-        </div>
-      </article>
-    </div>
-  <!-- </div> -->
+  <div class="box notification is-primary is-light">
+    <article class=" has-text-left">
+      <p class="title is-5">{{ attributes.title }}</p>
+      <p class="subtitle is-6">{{ type }}</p>
+      <div class="content">
+        <ul class="flat-attrs-list">
+          <li><b>Комнат:</b> {{ attributes.rooms }}</li>
+          <li><b>Адрес:</b> {{ address }}</li>
+          <li><b>Площадь:</b> {{ area }}</li>
+          <li><b>Агент:</b> {{ agent }}</li>
+        </ul>
+      </div>
+    </article>
+  </div>
 </template>
 
 <script>
@@ -51,3 +51,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.flat-attrs-list {
+  list-style-type: none;
+  margin-left: 0;
+}
+</style>
